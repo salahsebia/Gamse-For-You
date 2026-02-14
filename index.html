@@ -1,90 +1,154 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Gamse For You</title>
 <style>
-body{
-margin:0;
-font-family:Arial;
-background:linear-gradient(to right,#0f2027,#203a43,#2c5364);
-color:white;
-text-align:center;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url('https://images.unsplash.com/photo-1605902711622-cfb43c4437d1') no-repeat center center/cover;
+  background-size: cover;
+  color: white;
+  text-align: center;
 }
-header{
-padding:40px;
+.overlay {
+  background: rgba(0,0,0,0.85);
+  min-height: 100vh;
+  padding-bottom: 50px;
 }
-h1{
-font-size:45px;
-margin-bottom:10px;
+header {
+  padding: 60px 20px 20px 20px;
 }
-.dev{
-color:#00ffcc;
-font-size:18px;
+h1 {
+  font-size: 50px;
+  color: #00ffcc;
+  text-shadow: 0 0 20px #00ffcc;
+  animation: glow 2s infinite alternate;
 }
-.container{
-margin:30px auto;
-width:85%;
-max-width:600px;
-background:#1c1c1c;
-padding:25px;
-border-radius:20px;
-box-shadow:0 0 25px black;
+@keyframes glow {
+  from { text-shadow: 0 0 10px #00ffcc; }
+  to { text-shadow: 0 0 30px #00ffcc; }
 }
-.features{
-text-align:left;
-margin-top:20px;
+.dev {
+  font-size: 18px;
+  color: #ccc;
+  margin-top: 10px;
 }
-.btn{
-display:inline-block;
-margin-top:25px;
-padding:15px 35px;
-background:#ff3c00;
-color:white;
-text-decoration:none;
-border-radius:12px;
-font-size:20px;
-transition:0.3s;
+.container {
+  margin: 40px auto;
+  width: 85%;
+  max-width: 700px;
+  background: #1a1a1a;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px black;
+  animation: fadeIn 2s ease-in;
 }
-.btn:hover{
-background:#ff6a00;
-transform:scale(1.05);
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-footer{
-margin-top:50px;
-padding:20px;
-font-size:14px;
-color:gray;
+.features {
+  text-align: left;
+  margin-top: 20px;
+  font-size: 18px;
+  line-height: 1.8;
+}
+.btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 18px 40px;
+  background: linear-gradient(45deg,#ff3c00,#ff9100);
+  color: white;
+  text-decoration: none;
+  border-radius: 15px;
+  font-size: 22px;
+  transition: 0.3s;
+  box-shadow: 0 0 20px #ff3c00;
+}
+.btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 40px #ff9100;
+}
+.gallery {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.gallery img {
+  width: 45%;
+  margin: 10px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px black;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.gallery img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
+}
+.counter {
+  margin-top: 25px;
+  font-size: 20px;
+  color: #ffcc00;
+}
+footer {
+  margin-top: 50px;
+  padding: 20px;
+  font-size: 14px;
+  color: gray;
 }
 </style>
 </head>
-
 <body>
+<div class="overlay">
 
 <header>
 <h1>🎮 Gamse For You</h1>
-<div class="dev">by happy kids studio</div>
+<div class="dev">by Happy Kids Studio</div>
 </header>
 
 <div class="container">
-<p>Fun kids game collection including:</p>
-
+<p>Exciting kids game collection including:</p>
 <div class="features">
-✔ Car Racing Games<br>
-✔ Fun Battle Mode<br>
-✔ Easy Controls for Kids<br>
-✔ Colorful Graphics<br>
+🚗 Car Racing Games<br>
+⚔️ Fun Battle Mode<br>
+🎨 Colorful Graphics<br>
+🎮 Easy Controls for Kids<br>
+✔ Safe & Tested APK
 </div>
 
-<a class="btn" href="PUT_YOUR_APK_LINK_HERE">
+<a class="btn" href="https://www.mediafire.com/file/aystrm3qkzd7c4u/Gamse_For_You.apk/file" target="_blank">
 ⬇ Download Now
 </a>
 
+<div class="counter">Downloads: <span id="downloadCount">0</span></div>
+
+<div class="gallery">
+<img src="https://i.ibb.co/DDvBTYg7/game1.jpg" alt="game image 1">
+<img src="https://i.ibb.co/p6zv9F3H/game2.jpg" alt="game image 2">
+<img src="https://i.ibb.co/VXKPxkj/game3.jpg" alt="game image 3">
+<img src="https://i.ibb.co/zWWCp7Rs/game4.jpg" alt="game image 4">
+</div>
 </div>
 
 <footer>
-© 2026 happy kids studio - All Rights Reserved
+© 2026 Salah - All Rights Reserved
 </footer>
+
+<script>
+const btn = document.querySelector('.btn');
+const countEl = document.getElementById('downloadCount');
+let count = localStorage.getItem('downloads') || 0;
+countEl.textContent = count;
+btn.addEventListener('click', () => {
+  count++;
+  countEl.textContent = count;
+  localStorage.setItem('downloads', count);
+});
+</script>
 
 </body>
 </html>
